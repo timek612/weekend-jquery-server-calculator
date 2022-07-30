@@ -13,6 +13,14 @@ app.listen(PORT, function() {
     onStart();
 })
 
+let calculationHistory = [];
+
 function onStart() {
     console.log('WORKING');
 }
+
+
+app.get('/history', function(req, res) {
+    console.log('in GET /history');
+    res.send(calculationHistory)
+})
