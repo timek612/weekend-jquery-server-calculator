@@ -13,6 +13,7 @@ app.listen(PORT, function() {
     onStart();
 })
 
+let currentCalculation = [];
 let calculationHistory = [];
 
 function onStart() {
@@ -23,4 +24,17 @@ function onStart() {
 app.get('/history', function(req, res) {
     console.log('in GET /history');
     res.send(calculationHistory)
+});
+
+app.get('/newData', function(req, res) {
+    console.log('in GET /newData');
+    res.send(currentCalculation);
 })
+
+app.post('/newData', function (req, res) {
+    console.log('in POST /newData');
+    console.log(req.body);
+    currentCalculation.push(req.body);
+
+    res.sendStatus(200);
+});
