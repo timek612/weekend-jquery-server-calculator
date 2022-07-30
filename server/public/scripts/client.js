@@ -1,6 +1,6 @@
 
 $(readyNow);
-
+let array = [];
 function readyNow() {
     getHistory();
     $('#additionBtn').on('click', storeFirstInput);
@@ -37,43 +37,49 @@ function renderToDOM(calculations) {
 };
 
 function storeFirstInput() {
+    
     console.log('in storeFirst');
-    let firstNumber = $('#firstNumInput').val();
+    let firstNumber = parseInt($('#firstNumInput').val());
     $('#firstNumInput').val('');
     console.log('First number:', firstNumber);
-    $.ajax({
-        method: 'POST',
-        url: '/newData',
-        //data is req.body on the server
-        data: {
-            number: firstNumber
-        }
-    }).then(function(responseFromServer) {
-        console.log(responseFromServer); //this is the sendStatus response
+    array.push(firstNumber);
+    // $.ajax({
+    //     method: 'POST',
+    //     url: '/newData',
+    //     //data is req.body on the server
+    //     data: {
+    //         number: firstNumber
+    //     }
+    // }).then(function(responseFromServer) {
+    //     console.log(responseFromServer); //this is the sendStatus response
 
-        getHistory();
-    })
+    //     getHistory();
+    // })
 
 };
 
 function storeSecondInput() {
     console.log('in storeSecond');
-    let secondNumber = $('#secondNumInput').val();
+    let secondNumber = parseInt($('#secondNumInput').val());
     $('#secondNumInput').val('');
     console.log('Second number:', secondNumber);
+    array.push(secondNumber);
 
     $.ajax({
         method: 'POST',
         url: '/newData',
         //data is req.body on the server
         data: {
-            number: secondNumber
+            numbers: array
         }
+        
     }).then(function(responseFromServer) {
-        console.log(responseFromServer); // this is the send status response
+        console.log(responseFromServer); 
 
         getHistory();
     })
+array.pop();
+array.pop();
 }
 
 

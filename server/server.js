@@ -20,6 +20,13 @@ function onStart() {
     console.log('WORKING');
 }
 
+function calculate(num1, num2) {
+    console.log('in calculate');
+    let total = 0;
+    total = num1 *= num2;
+    console.log(total);
+
+}
 
 app.get('/history', function(req, res) {
     console.log('in GET /history');
@@ -35,6 +42,7 @@ app.post('/newData', function (req, res) {
     console.log('in POST /newData');
     console.log(req.body);
     currentCalculation.push(req.body);
+    calculate(currentCalculation[0].numbers[0], currentCalculation[0].numbers[1]);
 
     res.sendStatus(200);
 });
