@@ -1,12 +1,13 @@
 
 $(readyNow);
 let array = [];
+let operator;
 function readyNow() {
     getHistory();
-    $('#additionBtn').on('click', storeFirstInput);
-    $('#subtractBtn').on('click', storeFirstInput);
-    $('#multiplyBtn').on('click', storeFirstInput);
-    $('#divisionBtn').on('click', storeFirstInput);
+    $('#additionBtn').on('click', storeFirstInputAddition);
+    $('#subtractBtn').on('click', storeFirstInputSubtract);
+    $('#multiplyBtn').on('click', storeFirstInputMultiply);
+    $('#divisionBtn').on('click', storeFirstInputDivision);
 
     $('#equalsBtn').on('click', storeSecondInput);
 
@@ -28,6 +29,8 @@ function getHistory() {
 function renderToDOM(calculations) {
     console.log('in render');
     $('#newestCalculation').empty();
+    $('#newestCalculation').append(calculations);
+
 
     for (let taco of calculations) {
         $('#history').append(`
@@ -36,27 +39,6 @@ function renderToDOM(calculations) {
     }
 };
 
-function storeFirstInput() {
-    
-    console.log('in storeFirst');
-    let firstNumber = parseInt($('#firstNumInput').val());
-    $('#firstNumInput').val('');
-    console.log('First number:', firstNumber);
-    array.push(firstNumber);
-    // $.ajax({
-    //     method: 'POST',
-    //     url: '/newData',
-    //     //data is req.body on the server
-    //     data: {
-    //         number: firstNumber
-    //     }
-    // }).then(function(responseFromServer) {
-    //     console.log(responseFromServer); //this is the sendStatus response
-
-    //     getHistory();
-    // })
-
-};
 
 function storeSecondInput() {
     console.log('in storeSecond');
@@ -64,13 +46,15 @@ function storeSecondInput() {
     $('#secondNumInput').val('');
     console.log('Second number:', secondNumber);
     array.push(secondNumber);
+    console.log(array);
 
     $.ajax({
         method: 'POST',
         url: '/newData',
         //data is req.body on the server
         data: {
-            numbers: array
+            numbers: array,
+            operator: operator
         }
         
     }).then(function(responseFromServer) {
@@ -82,8 +66,47 @@ array.pop();
 array.pop();
 }
 
+function storeFirstInputAddition() {
+    operator = '+';
+    console.log(operator);
+    console.log('in storeFirst');
+    let firstNumber = parseInt($('#firstNumInput').val());
+    $('#firstNumInput').val('');
+    console.log('First number:', firstNumber);
+    array.push(firstNumber);
 
-// let expression = {
-//     firstNumber: firstNumber,
-//     secondNumber: secondNumber
-// }
+};
+
+function storeFirstInputSubtract() {
+    operator = '-'
+    console.log(operator);
+    console.log('in storeFirst');
+    let firstNumber = parseInt($('#firstNumInput').val());
+    $('#firstNumInput').val('');
+    console.log('First number:', firstNumber);
+    array.push(firstNumber);
+
+};
+
+function storeFirstInputMultiply() {
+    operator = '*'
+    console.log(operator);
+    console.log('in storeFirst');
+    let firstNumber = parseInt($('#firstNumInput').val());
+    $('#firstNumInput').val('');
+    console.log('First number:', firstNumber);
+    array.push(firstNumber);
+
+};
+
+function storeFirstInputDivision() {
+    operator = '/'
+    console.log(operator);
+    console.log('in storeFirst');
+    let firstNumber = parseInt($('#firstNumInput').val());
+    $('#firstNumInput').val('');
+    console.log('First number:', firstNumber);
+    array.push(firstNumber);
+
+};
+
