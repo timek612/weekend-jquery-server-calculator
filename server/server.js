@@ -17,6 +17,7 @@ app.listen(PORT, function() {
 let currentCalculation = [];
 let calculationHistory = [];
 
+
 function onStart() {
     console.log('WORKING');
 }
@@ -40,7 +41,7 @@ function calculate(num1, num2, operator) {
         total = num1/=num2;
         console.log(total);
     }
-    return total;
+    return total; // global total is updated
 
 }
 
@@ -63,8 +64,23 @@ app.post('/newData', function (req, res) {
     currentCalculation[0].numbers[1] = parseInt(currentCalculation[0].numbers[1]);
     
     calculate(currentCalculation[0].numbers[0], currentCalculation[0].numbers[1], currentCalculation[0].operator);
+    currentCalculation.pop();
     calculationHistory.push(total);
+    currentCalculation.push(total);
     total = 0;
 
     res.sendStatus(200);
 });
+
+app.get('/currentSender', function (req, res) {
+    console.log('in sender');
+    res.send(currentCalculation);
+    currentCalculation.pop();
+})
+
+app.post('/deleteData', function (req, res) {
+    console.log('gonna delete this data');
+    calculationHistory = [];
+    console.log(calculationHistory);
+    res.send(200);
+})
