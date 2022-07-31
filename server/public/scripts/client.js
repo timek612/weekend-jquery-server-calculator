@@ -94,46 +94,74 @@ numberInputsAndOperator.pop();
 }
 
 function storeFirstInputAddition() {// function if addition
-    operator = '+';
+    let first = $('#firstNumInput').val();
+    if (first == "") {
+        alert('You must fill in the first input field before performing this action');
+    }
+    else {
+        operator = '+';
     console.log(operator);
     console.log('in storeFirst');
     let firstNumber = parseInt($('#firstNumInput').val());
     
     console.log('First number:', firstNumber);
     numberInputsAndOperator.push(firstNumber);
+    }
+    
 
 };
 
 function storeFirstInputSubtract() {// function if subtraction
-    operator = '-'
+    let first = $('#firstNumInput').val();
+    if (first == "") {
+        alert('You must fill in the first input field before performing this action');
+    }
+    else {
+        operator = '-'
     console.log(operator);
     console.log('in storeFirst');
     let firstNumber = parseInt($('#firstNumInput').val());
   
     console.log('First number:', firstNumber);
     numberInputsAndOperator.push(firstNumber);
+    }
+    
 
 };
 
 function storeFirstInputMultiply() {// function if multiplication
-    operator = '*'
+    let first = $('#firstNumInput').val();
+    if (first == "") {
+        alert('You must fill in the first input field before performing this action');
+    }
+    else {
+        operator = '*'
     console.log(operator);
     console.log('in storeFirst');
     let firstNumber = parseInt($('#firstNumInput').val());
    
     console.log('First number:', firstNumber);
     numberInputsAndOperator.push(firstNumber);
+    }
+    
 
 };
 
 function storeFirstInputDivision() { // function if division
-    operator = '/'
+    let first = $('#firstNumInput').val();
+    if (first == "") {
+        alert('You must fill in the first input field before performing this action');
+    }
+    else {
+        operator = '/'
     console.log(operator);
     console.log('in storeFirst');
     let firstNumber = parseInt($('#firstNumInput').val());
     
     console.log('First number:', firstNumber);
     numberInputsAndOperator.push(firstNumber);
+    }
+    
 
 };
 
