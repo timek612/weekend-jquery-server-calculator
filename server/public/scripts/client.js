@@ -2,8 +2,8 @@ $(readyNow);
 let numberInputsAndOperator = [];
 let operator;
 function readyNow() {
-    getHistory();
-    $('#additionBtn').on('click', storeFirstInputAddition);
+    getHistory(); //first get request on jquery ready
+    $('#additionBtn').on('click', storeFirstInputAddition); //click listeners
     $('#subtractBtn').on('click', storeFirstInputSubtract);
     $('#multiplyBtn').on('click', storeFirstInputMultiply);
     $('#divisionBtn').on('click', storeFirstInputDivision);
@@ -12,7 +12,7 @@ function readyNow() {
     $('#clearBtn').on('click', clearHistory);
 }
 
-function getHistory() {
+function getHistory() { // function grabs history of calculations
     console.log('in history');
 
     $.ajax({
@@ -24,7 +24,7 @@ function getHistory() {
         renderToList(responseFromServer);
     })
 }
-function getCurrent() {
+function getCurrent() { // function gets current calculation info
     console.log('in getCurrent');
     $.ajax({
         method:'GET',
@@ -35,10 +35,9 @@ function getCurrent() {
     })
 }
 
-function renderToList(history) {
+function renderToList(history) { // function puts history onto DOM
     // console.log('in render');
-    // $('#newestCalculation').empty(); //for the h2
-    // $('#newestCalculation').append(currentCalculation);
+    
     $('#history').empty();
 
 
@@ -49,14 +48,21 @@ function renderToList(history) {
     }
 };
 
-function renderToHeader(package) {
+function renderToHeader(package) { // function puts current calculation onto DOM
     $('#newestCalculation').empty();
     $('#newestCalculation').append(package)
     
 }
 
 
-function storeSecondInput() {
+function storeSecondInput() { // function packages inputs and sends to server
+    let first = $('#firstNumInput').val();
+    let second = $('#secondNumInput').val();
+    if (first == "" || second == "" ) {
+    alert('Both fields must take inputs');
+   }
+   else {
+    
     console.log('in storeSecond');
     let secondNumber = parseInt($('#secondNumInput').val());
     $('#secondNumInput').val('');
@@ -83,9 +89,11 @@ function storeSecondInput() {
     })
 numberInputsAndOperator.pop();
 numberInputsAndOperator.pop();
+   }
+
 }
 
-function storeFirstInputAddition() {
+function storeFirstInputAddition() {// function if addition
     operator = '+';
     console.log(operator);
     console.log('in storeFirst');
@@ -96,7 +104,7 @@ function storeFirstInputAddition() {
 
 };
 
-function storeFirstInputSubtract() {
+function storeFirstInputSubtract() {// function if subtraction
     operator = '-'
     console.log(operator);
     console.log('in storeFirst');
@@ -107,7 +115,7 @@ function storeFirstInputSubtract() {
 
 };
 
-function storeFirstInputMultiply() {
+function storeFirstInputMultiply() {// function if multiplication
     operator = '*'
     console.log(operator);
     console.log('in storeFirst');
@@ -118,7 +126,7 @@ function storeFirstInputMultiply() {
 
 };
 
-function storeFirstInputDivision() {
+function storeFirstInputDivision() { // function if division
     operator = '/'
     console.log(operator);
     console.log('in storeFirst');
@@ -129,7 +137,7 @@ function storeFirstInputDivision() {
 
 };
 
-function clearHistory() {
+function clearHistory() { // clears current DOM data
     $('#history').empty();
     $('#newestCalculation').empty();
 

@@ -22,7 +22,7 @@ function onStart() {
     console.log('WORKING');
 }
 
-function calculate(num1, num2, operator) {
+function calculate(num1, num2, operator) {// this is where all the math logic and calculations happen
     console.log('in calculate');
     
     if (operator === '+') {
@@ -56,7 +56,7 @@ app.get('/newData', function(req, res) {
     res.send(currentCalculation);
 })
 
-app.post('/newData', function (req, res) {
+app.post('/newData', function (req, res) {// data comes in and gets sent to be calculated
     console.log('in POST /newData');
     console.log(req.body);
     currentCalculation.push(req.body);

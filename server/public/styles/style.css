@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(225, 203, 173);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.inputs {
+    border-radius: 5px;
+}
+
+button {
+    border-radius: 5px;
+}
+ #history {
+    color: rgb(124, 133, 213)
+ }
